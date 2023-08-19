@@ -4,13 +4,13 @@ from .models import User
 
 
 
-class UserRegisterSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     
     confirm_password = serializers.CharField(required=True, write_only=True)
 
     class Meta: 
         model = User
-        fields = ('phone_number', 'password', 'confirm_password')
+        fields = '__all__'
         
         extra_kwargs = {
             'password' : {'write_only': True},

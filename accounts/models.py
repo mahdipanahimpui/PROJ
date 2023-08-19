@@ -10,6 +10,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
 
+    # NOTE: add athentication by email and username
+    # verify by sms and email, reset password by them.
+
     USERNAME_FIELD = 'phone_number'
     # username_field and password(by default) is used to create user
 
@@ -28,6 +31,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     def is_staff(self):
         return self.is_admin # just availabel by superuser
     
+
+
+
+
+
+
+
+
 
 
 

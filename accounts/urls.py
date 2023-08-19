@@ -12,8 +12,6 @@ urlpatterns = [
 ]
 
 
-
-
 router = routers.SimpleRouter()
-router.register('user', views.UserViewSet, basename='user') # url, view name
+router.register('users', views.UserViewSet, basename='users') # url, view name
 urlpatterns += router.urls 

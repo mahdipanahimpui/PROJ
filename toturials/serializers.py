@@ -1,11 +1,12 @@
 from rest_framework import serializers
 from .models import Course, TakeCourse
-
+from persons.serializers import ParticipantSerializer
 
 
 
 class CourseSerializer(serializers.ModelSerializer):
     
+    # participants = ParticipantSerializer(many=True)
 
     class Meta: 
         model = Course

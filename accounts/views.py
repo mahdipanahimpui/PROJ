@@ -1,8 +1,9 @@
 from typing import Any
 from django import http
 from django.shortcuts import render, HttpResponse, get_object_or_404
-from rest_framework.views import APIView
 from rest_framework import viewsets
+from rest_framework.pagination import PageNumberPagination
+from django.core.paginator import Paginator
 from rest_framework.response import Response
 from rest_framework import status
 from . forms import UserRegistrationForm
@@ -53,7 +54,10 @@ class UserViewSet(viewsets.ViewSet): # viewsets doesnt support instance-level pe
     
 
     def list(self, request):
-        ser_data = UserSerializer(instance=self.users, many=True)
+        page_number = self.request.query_params.get('page', 1)
+        page_size = self.request.query_params.get('limit', 2)
+        paginator = Paginator(self.users, page_size)
+        ser_data = UserSerializer(instance=paginator.page(page_number), many=True)
         return Response(data=ser_data.data)
     
 
@@ -85,5 +89,5 @@ class UserViewSet(viewsets.ViewSet): # viewsets doesnt support instance-level pe
     
 
     def update(self, requesr, pk=None):
-        pass
+        return Response({'message:', 'update not impelemented'})
         

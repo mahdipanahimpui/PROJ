@@ -9,6 +9,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True, max_length=128, blank=True, null=True)
     is_active = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
+    created = models.PositiveIntegerField(blank=True, null=True)
 
     # NOTE: add athentication by email and username
     # verify by sms and email, reset password by them.

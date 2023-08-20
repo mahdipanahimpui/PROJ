@@ -37,7 +37,7 @@ class Education(models.Model):
 
 
 class Participant(models.Model):
-    person = models.OneToOneField(Person, on_delete=models.CASCADE, related_name='p_participants')
+    person = models.OneToOneField(Person, unique=True ,on_delete=models.CASCADE, related_name='p_participants')
     fields = models.ManyToManyField(Field, related_name='participants',blank=True)
     education = models.ForeignKey(Education, on_delete=models.SET_NULL, null=True, blank=True, related_name='e_participants')
 
@@ -46,7 +46,7 @@ class Participant(models.Model):
 
 
 class Teacher(models.Model):
-    person = models.OneToOneField(Person, on_delete=models.CASCADE, related_name='p_teacher')
+    person = models.OneToOneField(Person, unique=True, on_delete=models.CASCADE, related_name='p_teacher')
     experience = models.PositiveSmallIntegerField(null=True, blank=True)
     fields = models.ManyToManyField(Field, related_name='teachers', blank=True)
     education = models.ForeignKey(Education, on_delete=models.SET_NULL ,null=True, blank=True, related_name='e_teachers')
